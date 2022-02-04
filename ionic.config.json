@@ -1,0 +1,7 @@
+{
+  "name": "payCalculator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
