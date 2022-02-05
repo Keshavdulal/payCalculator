@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -19,15 +20,25 @@ export class Tab1Page {
   tax = 0;
   netPay = 0; // cash in hand
 
-  constructor() {}
+  constructor(public alertController: AlertController) {}
 
   ngOnInit(): void {}
 
-  calculatePay() {
-    console.log('@calculatePay', this.hoursWorked, this.hourlyRate);
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Params Missing',
+      message: 'Enter all the Parameters',
+      buttons: ['OK'],
+    });
 
+    await alert.present();
+  }
+
+  calculatePay() {
+    // handle empty inputs
     if (!this.hourlyRate || !this.hourlyRate) {
       console.log('Enter Params');
+      this.presentAlert();
       return;
     }
 
